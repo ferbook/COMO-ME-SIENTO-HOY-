@@ -1,13 +1,85 @@
-
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mi Diario Emocional</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diario Integral - Sprint 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f1f8;
+      color: #333;
+      padding: 20px;
+    }
+    .chakra {
+      margin-top: 10px;
+      font-weight: bold;
+      color: purple;
+    }
+    .emotion-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .positive { background-color: #4CAF50; }
+    .negative { background-color: #F44336; }
+    #log { margin-top: 20px; }
+    .affirmation { margin-top: 20px; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>🧘 Diario Integral - Sprint 1</h1>
+  <p>Selecciona cómo te sientes hoy:</p>
+
+  <div class="emotion-buttons">
+    <button class="positive" onclick="registerEmotion('Feliz')">Feliz</button>
+    <button class="positive" onclick="registerEmotion('Amado')">Amado</button>
+    <button class="positive" onclick="registerEmotion('Agradecido')">Agradecido</button>
+    <button class="negative" onclick="registerEmotion('Triste')">Triste</button>
+    <button class="negative" onclick="registerEmotion('Ansioso')">Ansioso</button>
+    <button class="negative" onclick="registerEmotion('Solo')">Solo</button>
+  </div>
+
+  <div id="chakra" class="chakra"></div>
+  <div class="affirmation" id="affirmation"></div>
+  <div id="log"></div>
+
+  <script>
+    const chakraMap = {
+      'Feliz': 'Chakra Corazón 💚',
+      'Amado': 'Chakra Corazón 💖',
+      'Agradecido': 'Chakra Corona 👑',
+      'Triste': 'Chakra Garganta 💙',
+      'Ansioso': 'Chakra Plexo Solar 💛',
+      'Solo': 'Chakra Raíz ❤️',
+    };
+
+    const affirmations = {
+      'Feliz': 'Hoy mereces cada rayo de sol en tu camino.',
+      'Amado': 'El amor te rodea y te protege.',
+      'Agradecido': 'La gratitud abre puertas invisibles.',
+      'Triste': 'Tu tristeza es una semilla de sanación.',
+      'Ansioso': 'Respira. Todo está bien en este instante.',
+      'Solo': 'Nunca estás solo. El universo te acompaña.',
+    };
+
+    function registerEmotion(emotion) {
+      document.getElementById("chakra").innerText = "Energía activada: " + chakraMap[emotion];
+      document.getElementById("affirmation").innerText = affirmations[emotion];
+      const log = document.getElementById("log");
+      const entry = document.createElement("div");
+      entry.innerText = `✅ Emoción registrada: ${emotion} a las ${new Date().toLocaleTimeString()}`;
+      log.appendChild(entry);
+    }
+  </script>
+</body>
 </html>
